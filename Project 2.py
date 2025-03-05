@@ -16,5 +16,4 @@ def main():
     word_count = count_words(text)
     print(f"Word Count: {word_count}")
 
-if __name__ == "__main__":
-    main()
+main()
