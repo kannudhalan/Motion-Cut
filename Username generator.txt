@@ -1,0 +1,51 @@
+import random
+
+adjectives = ["Happy", "Cool", "Brave", "Chill", "Mighty", "Clever", "Witty", "Jolly", "Sneaky", "Pretty"]
+nouns = ["Tiger", "Dragon", "Eagle", "Knight", "Wizard", "Shadow", "Panda", "Phoenix", "Ninja", "Samurai"]
+
+def generate_username(numbers,special_chars):
+    adj = random.choice(adjectives)
+    noun = random.choice(nouns)
+    username = adj + noun  
+
+    if special_chars == "yes":
+        username += random.choice("!@#$%^&*")
+        
+    if numbers == "yes":
+        username += str(random.randint(10, 99))
+
+
+    return username
+
+def save_to_file(usernames, filename="usernames.txt"):
+    try:
+        with open(filename, "a") as file:
+                file.write('\n'+usernames)
+        print(f"\n Username saved to '{filename}' successfully!")
+    except Exception as e:
+        print(f"\n Error saving to file: {e}")
+
+def main():
+    numbers = input("Do you want to include numbers? (yes/no): ").strip().lower()
+    special_chars = input("Do you want to include special characters? (yes/no): ").strip().lower()
+
+
+    usernames = generate_username(numbers,special_chars) 
+
+    print("\n Generated Username ")
+    print("->",usernames)
+
+
+    save_option = input("\n Do you want to save these usernames to a file? (yes/no): ").strip().lower()
+    if save_option == "yes":
+        save_to_file(usernames)
+print(" Welcome to the Random Username Generator! ")
+main()
+while True:
+    unlike=input("Do you need another username to suggest?(yes/no):").strip().lower()
+    if unlike == "yes":
+        main()
+    else:
+        break
+    
+print("\n Thank you for using the Username Generator! ")
